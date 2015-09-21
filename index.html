@@ -81,6 +81,137 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/21/使用浏览器缓存/" title="使用浏览器缓存" itemprop="url">使用浏览器缓存</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T05:55:20.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>当PageSpeed Insights检测到您的服务器响应不包含明确的缓存标头或某些资源被指定只缓存一小段时间时，就会触发此规则。</p>
+<p>###概览</p>
+<p>如果用户会多次访问您的网站，那么静态资源的浏览器缓存可以节省用户的时间。缓存标头应当应用到所有可缓存的静态资源中，而不仅仅是应用到一小部分静态资源（例如，图片）中。可缓存的资源包括JS和CSS文件、图像文件及其他二进制对象文件（媒体文件和PDF文件等）。通常情况下，HTML不是静态资源，默认情况下不应被视为可缓存资源。您应考虑哪些缓存政策适用于您网站的HTML。</p>
+<p>###建议</p>
+<p>为您的服务器启用浏览器缓存。静态资源应该至少有一周的缓存有效期。广告或小部件这类的第三方资源也应该至少有一天的缓存有效期。对于所有可缓存资源，我们建议您进行以下设置：</p>
+<p>将Expires设为将来日期，至少为一周，最多为一年（我们倾向于设置Expires，而不设置Cache-Control: max-age，因为前者受支持的范围更为广泛）。请勿将其设为超过一年的将来日期，因为这样就违反了RFC准则。<br>如果您知道资源将具体在何时发生变化，则可以设置较短的过期日期。然而，如果您认为资源“可能将要发生变化”，但又不知道具体时间，则应设置较长的过期日期，并使用网址指纹（如下所述）。<br>Expires和Cache-Control: max-age标头</p>
+<p>这些标头用于指定相应时间段，浏览器可在指定的这段时间内使用已缓存的资源，而无需查看网络服务器是否提供了新版资源。这些缓存标头功能强大，没有任何应用条件限制。在设置这些标头并下载资源后，浏览器不会为资源发出任何GET请求，除非过期日期到期或达到时间最大值，亦或是用户清除了缓存。</p>
+<p>###Last-Modifed和ETag标头</p>
+<p>这些标头可用于指定浏览器应如何确定用于缓存的文件是否相同。在Last-Modified标头中指定的是日期，而在ETag标头中指定的则可以是唯一标识资源的任意值（通常为文件版本或内容哈希值）。Last-Modified是功能“较弱”的缓存标头，因为浏览器会使用试探法来确定是否需要从缓存中抓取内容。</p>
+<p>借助这些标头，浏览器可以通过在用户明确重新加载页面时发出条件式GET请求，有效地更新其已缓存资源。除非您在服务器端更改资源，否则条件式GET请求不会返回完整的响应，因此相较于完整GET请求，此类请求的延迟较小。</p>
+<p>###我应使用哪个缓存标头？</p>
+<p>对于所有可缓存资源，指定一个Expires或Cache-Control max-age以及一个Last-Modified或ETag至关重要。您没必要同时指定Expires和Cache-Control: max-age；或同时指定Last-Modified和ETag。<br>使用网址指纹</p>
+<p>对于偶尔发生变化的资源，我们可以让浏览器缓存相应的资源，直到该资源在服务器上出现变化，而服务器则在此时通知浏览器有新版本可用。我们可以通过为每个版本的资源指定一个唯一网址来实现这一目的。例如，假定我们有一个名为“my_stylesheet.css”的资源。我们可以将文件重命名为“my_stylesheet_fingerprint.css”。当资源发生变化时，其指纹就会发生变化，对应的网址也会随之更改。网址一经更改，系统就会强制浏览器重新抓取资源。通过指纹，我们甚至可以为变化更为频繁的资源设置将来的过期日期。</p>
+<p>指纹识别的常用方法是使用对文件内容的哈希值进行编码的128位十六进制数。</p>
+<p>另一个策略是直接为新版应用创建新版目录，然后为版本目录中的各个版本放置所有资源。这样做的缺点是，如果各个版本中的资源未发生变化，则其网址将仍会更改以强制重新下载。使用内容哈希值不会遇到该问题，但这种方法稍微复杂一些。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/css-图片剧中/" title="css 图片剧中" itemprop="url">css 图片剧中</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T05:53:00.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <pre><code class="bash"> .new_proimg{　
+    display: table-cell;　/*非IE的主流浏览器识别的垂直居中的方法*/　
+    vertical-align:middle;　/*非IE的主流浏览器识别的垂直居中的方法*/　
+    text-align:center;　/*设置水平居中*/　
+    *display: block;　/* 针对IE的Hack */　
+    *font-size: <span class="number">104</span>px;　/*约为高度的<span class="number">0.873</span>，<span class="number">120</span>*<span class="number">0.873</span> 约为<span class="number">104</span>*/　
+    *font-family:Arial;    　
+    width:<span class="number">120</span>px;　
+    height:<span class="number">120</span>px;　
+    margin-bottom: <span class="number">5</span>px;　
+    border: <span class="number">1</span>px solid <span class="comment">#eee;</span>
+}
+</code></pre>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/21/移动端的meta/" title="移动端的meta" itemprop="url">移动端的meta</a>
   </h1>
   <p class="article-author">By
@@ -186,64 +317,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/18/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-18T01:28:25.849Z" itemprop="datePublished"> 发表于 2015-09-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -261,6 +334,10 @@
 		
 			
 				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
 			
 		
 			
