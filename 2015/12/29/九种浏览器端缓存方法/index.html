@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="n代农">
 <meta property="og:description" content="(转)摘要 浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机智，有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。浏览器端缓存的机制种类较多，总体归纳为九种，这里详细分析下这九种缓存机制的原理和使用场景。打开浏览器的调试模式-&amp;gt;resources左侧就有浏览器的8种缓存机制。
 1&amp;#19968;&amp;#1">
-<meta property="og:updated_time" content="2015-12-30T09:10:19.000Z">
+<meta property="og:updated_time" content="2015-12-30T09:14:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="九种浏览器端缓存">
 <meta name="twitter:description" content="(转)摘要 浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机智，有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。浏览器端缓存的机制种类较多，总体归纳为九种，这里详细分析下这九种缓存机制的原理和使用场景。打开浏览器的调试模式-&amp;gt;resources左侧就有浏览器的8种缓存机制。
@@ -149,7 +149,7 @@
 </ul>
 <p><a href="http://mxr.mozilla.org/mozilla-central/source/modules/libpref/src/init/all.js http://caniuse.com/#feat=indexeddb" target="_blank" rel="external">http://mxr.mozilla.org/mozilla-central/source/modules/libpref/src/init/all.js http://caniuse.com/#feat=indexeddb</a></p>
 <p>####四、cookie</p>
-<p>  Cookie（或者Cookies），指一般网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）。cookie一般通过http请求中在头部一起发送到服务器端。一条cookie记录主要由键、值、域、过期时间、大小组成，一般用户保存用户的认证信息。cookie最大长度和域名个数由不同浏览器决定，具体如下：<br>| 浏览器               | 支持域名个数           | 最大长度  |<br>| ————- :|————-:| —–:|<br> |IE7以上     |50个     |4095B |<br> |Firefox     |50个     |4097B |<br> |Opera     |30个     |4096B |<br> |Safari/WebKit     |无限制     |4097B |</p>
+<p>  Cookie（或者Cookies），指一般网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）。cookie一般通过http请求中在头部一起发送到服务器端。一条cookie记录主要由键、值、域、过期时间、大小组成，一般用户保存用户的认证信息。cookie最大长度和域名个数由不同浏览器决定，具体如下：<br>| 浏览器    | 支持域名个数| 最大长度|<br>| ————- :|————-:|————-:|<br> |IE7以上     |50个     |4095B |<br> |Firefox     |50个     |4097B |<br> |Opera     |30个     |4096B |<br> |Safari/WebKit     |无限制     |4097B |</p>
 <p>不同域名之间的cookie信息是独立的，如果需要设置共享可以在服务器端设置cookie的path和domain来实现共享。浏览器端也可以通过document.cookie来获取cookie，并通过js浏览器端也可以方便地读取/设置cookie的值。</p>
 <p>####五、localstorage</p>
 <p>localStorage是html5的一种新的本地缓存方案，目前用的比较多，一般用来存储ajax返回的数据，加快下次页面打开时的渲染速度。</p>
