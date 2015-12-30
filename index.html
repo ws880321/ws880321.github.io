@@ -332,6 +332,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/21/九种浏览器端缓存方法/" title="If语句的变形" itemprop="url">If语句的变形</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T02:46:44.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机智，有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。浏览器端缓存的机制种类较多，总体归纳为九种，这里详细分析下这九种缓存机制的原理和使用场景。打开浏览器的调试模式-&gt;resources左侧就有浏览器的8种缓存机制。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机智，有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。浏览器端缓存的机制种类较多，总体归纳为九种，这里详细分析下这九种缓存机制的原理和使用场景。打开浏览器的调试模式-&gt;resources左侧就有浏览器的<span class="number">8</span>种缓存机制</span><br></pre></td></tr></table></figure></p>
+<p>浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机制，有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。浏览器端缓存的机制种类较多，总体归纳为九种，这里详细分析下这九种缓存机制的原理和使用场景。打开浏览器的调试模式-&gt;resources左侧就有浏览器的8种缓存机制。</p>
+<p>一、http缓存</p>
+<p>  http缓存是基于HTTP协议的浏览器文件级缓存机制。即针对文件的重复请求情况下，浏览器可以根据协议头判断从服务器端请求文件还是从本地读取文件，chrome控制台下的Frames即展示的是浏览器的http文件级缓存。以下是浏览器缓存的整个机制流程。主要是针对重复的http请求，在有缓存的情况下判断过程主要分3步：</p>
+<p>判断expires，如果未过期，直接读取http缓存文件，不发http请求，否则进入下一步<br>判断etag，判断文件是否修改，如果修改，则带上if-none-match发送请求，返回200或304，否则进入下一步<br>判断last-modified，判断文件是否超过最大缓存时间，则带上if-modified-since发送请求，返回200或304，否则直接不带发送请求</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/浏览器/">浏览器</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/21/If语句的变形/" title="If语句的变形" itemprop="url">If语句的变形</a>
   </h1>
   <p class="article-author">By
@@ -408,6 +467,10 @@
 		
 			
 				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>1</sup></a></li>
 			
 		
 			
