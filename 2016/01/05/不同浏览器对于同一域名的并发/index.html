@@ -12,18 +12,21 @@
 
     
     <meta name="description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
-提高浏览器并发连接数阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP">
+ 提高浏览器并发连接数 
+阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在H">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不同浏览器对于同一域名的并发">
 <meta property="og:url" content="http://wangdashuai.com/2016/01/05/不同浏览器对于同一域名的并发/index.html">
 <meta property="og:site_name" content="n代农">
 <meta property="og:description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
-提高浏览器并发连接数阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP">
-<meta property="og:updated_time" content="2016-01-05T06:56:49.000Z">
+ 提高浏览器并发连接数 
+阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在H">
+<meta property="og:updated_time" content="2016-01-05T07:07:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不同浏览器对于同一域名的并发">
 <meta name="twitter:description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
-提高浏览器并发连接数阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP">
+ 提高浏览器并发连接数 
+阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在H">
 
     
     <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
@@ -99,12 +102,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#提高浏览器并发连接数"><span class="toc-number">1.</span> <span class="toc-text">提高浏览器并发连接数</span></a></li></ol>
+			
 		
 		</div>
 		
 		<p>当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。</p>
-<h4 id="提高浏览器并发连接数">提高浏览器并发连接数</h4><p>阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP/1.0下，IE6的并发连接数可以达到4个。在其它浏览器也有类似的限制，一般是4~8个。这个时候，如果浏览器同时对某一域名发起多个请求，超过了限制就会出现等待，也就是阻挡。</p>
+<p><strong> 提高浏览器并发连接数 </strong></p>
+<p>阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP/1.0下，IE6的并发连接数可以达到4个。在其它浏览器也有类似的限制，一般是4~8个。这个时候，如果浏览器同时对某一域名发起多个请求，超过了限制就会出现等待，也就是阻挡。</p>
 <p>那么为了解决阻挡这一问题，我们可以对某些URL的域名分散处理，比如我们的图片域名，一般用类似img.guoweiwei.com的域名，当一个页面包含20多张图片的时候，那至少有10几个请求会被阻挡，而如果我们分散到img0.guoweiwei.com/img1.guoweiwei.com/img2.guoweiwei.com/…等不同域名的时候，至少这20个图片请求会并发进行,网站打开速度会明显提升很多。类似的，可以对一些css/js的域名同样处理</p>
   
 	</div>
@@ -155,7 +159,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#提高浏览器并发连接数"><span class="toc-number">1.</span> <span class="toc-text">提高浏览器并发连接数</span></a></li></ol>
+ 
  
   </div>
 
