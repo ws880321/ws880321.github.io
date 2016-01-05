@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测 | n代农</title>
+    <title>不同浏览器对于同一域名的并发 | n代农</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="ws">
     
 
     
-    <meta name="description" content="12345678910111213var isIE=!!window.ActiveXObject;var isIE6=isIE&amp;amp;&amp;amp;!window.XMLHttpRequest;var isIE8=isIE&amp;amp;&amp;amp;!!document.documentMode;var isIE7=isIE&amp;amp;&amp;amp;!isIE6&amp;amp;&amp;amp;!isIE8;if (isIE)">
+    <meta name="description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
+提高浏览器并发连接数阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测">
-<meta property="og:url" content="http://wangdashuai.com/2015/09/21/常用的-JavaScript-检测浏览器为-IE-是哪个版本的代码，包括是否是最人极端厌恶的-ie6-识别与检测。/index.html">
+<meta property="og:title" content="不同浏览器对于同一域名的并发">
+<meta property="og:url" content="http://wangdashuai.com/2016/01/05/不同浏览器对于同一域名的并发/index.html">
 <meta property="og:site_name" content="n代农">
-<meta property="og:description" content="12345678910111213var isIE=!!window.ActiveXObject;var isIE6=isIE&amp;amp;&amp;amp;!window.XMLHttpRequest;var isIE8=isIE&amp;amp;&amp;amp;!!document.documentMode;var isIE7=isIE&amp;amp;&amp;amp;!isIE6&amp;amp;&amp;amp;!isIE8;if (isIE)">
-<meta property="og:updated_time" content="2015-09-21T06:30:20.000Z">
+<meta property="og:description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
+提高浏览器并发连接数阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP">
+<meta property="og:updated_time" content="2016-01-05T06:56:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测">
-<meta name="twitter:description" content="12345678910111213var isIE=!!window.ActiveXObject;var isIE6=isIE&amp;amp;&amp;amp;!window.XMLHttpRequest;var isIE8=isIE&amp;amp;&amp;amp;!!document.documentMode;var isIE7=isIE&amp;amp;&amp;amp;!isIE6&amp;amp;&amp;amp;!isIE8;if (isIE)">
+<meta name="twitter:title" content="不同浏览器对于同一域名的并发">
+<meta name="twitter:description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
+提高浏览器并发连接数阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP">
 
     
     <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
@@ -80,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/21/常用的-JavaScript-检测浏览器为-IE-是哪个版本的代码，包括是否是最人极端厌恶的-ie6-识别与检测。/" title="常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测" itemprop="url">常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测</a>
+      <a href="/2016/01/05/不同浏览器对于同一域名的并发/" title="不同浏览器对于同一域名的并发" itemprop="url">不同浏览器对于同一域名的并发</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-21T06:05:55.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    <time datetime="2016-01-05T06:46:06.000Z" itemprop="datePublished"> 发表于 2016-01-05</time>
     
   </p>
 </header>
@@ -96,20 +99,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#提高浏览器并发连接数"><span class="toc-number">1.</span> <span class="toc-text">提高浏览器并发连接数</span></a></li></ol>
 		
 		</div>
 		
-		<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> isIE</span>=!!window.ActiveXObject;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE6</span>=isIE&amp;&amp;!window.XMLHttpRequest;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE8</span>=isIE&amp;&amp;!!document.documentMode;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE7</span>=isIE&amp;&amp;!isIE6&amp;&amp;!isIE8;</span><br><span class="line"><span class="keyword">if</span> (isIE)&#123;</span><br><span class="line">    <span class="keyword">if</span> (isIE6)&#123;</span><br><span class="line">		alert(<span class="string">"ie6"</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (isIE8)&#123;</span><br><span class="line">		alert(<span class="string">"ie8"</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (isIE7)&#123;</span><br><span class="line">		alert(<span class="string">"ie7"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后是一个稍微短的 js 判断是否 ie 的方法：<br>这个貌似是利用 IE 中 JScript所特有的条件编译或曰条件注释来区分 IE 和非 IE 这里的IE/非IE均是针对内核而言，以IE为内核的浏览器将视为IE</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ie</span> = <span class="number">0</span><span class="comment">/*@cc_on+1@*/</span>;</span><br></pre></td></tr></table></figure>
-<p>一个最短的 js 判断 ie 或非 ie 的代码，大小仅仅 7bytes：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ie = !+<span class="string">'\v1'</span>;</span><br></pre></td></tr></table></figure>
-<p>2010年1月，一位俄国人利用了IE与标准浏览器在处理数组的toString方法的差异，仅6bytes就完美完成了是否IE浏览器的检测：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ie</span> = !-[<span class="number">1</span>,];</span><br></pre></td></tr></table></figure>
-<p>利用这些发现，我们可以使代码写的更短。如今检测是否为 IE6 其实可以写成：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ie6=!-[<span class="number">1</span>,]&amp;&amp;!<span class="built_in">window</span>.XMLHttpRequest;</span><br></pre></td></tr></table></figure>
-<p>之前那大段累赘的分析navigator，然后正则比较的方式，后面的 js 方法是不是效率更</p>
+		<p>当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。</p>
+<h4 id="提高浏览器并发连接数">提高浏览器并发连接数</h4><p>阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP/1.0下，IE6的并发连接数可以达到4个。在其它浏览器也有类似的限制，一般是4~8个。这个时候，如果浏览器同时对某一域名发起多个请求，超过了限制就会出现等待，也就是阻挡。</p>
+<p>那么为了解决阻挡这一问题，我们可以对某些URL的域名分散处理，比如我们的图片域名，一般用类似img.guoweiwei.com的域名，当一个页面包含20多张图片的时候，那至少有10几个请求会被阻挡，而如果我们分散到img0.guoweiwei.com/img1.guoweiwei.com/img2.guoweiwei.com/…等不同域名的时候，至少这20个图片请求会并发进行,网站打开速度会明显提升很多。类似的，可以对一些css/js的域名同样处理</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -118,7 +114,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/javascript/">javascript</a>
+  <span></span> <a href="/tags/浏览器/">浏览器</a>
   </div>
 
 </div>
@@ -127,7 +123,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://wangdashuai.com/2015/09/21/常用的-JavaScript-检测浏览器为-IE-是哪个版本的代码，包括是否是最人极端厌恶的-ie6-识别与检测。/" data-title="常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测 | n代农" data-tsina="null" class="share clearfix">
+	  <div data-url="http://wangdashuai.com/2016/01/05/不同浏览器对于同一域名的并发/" data-title="不同浏览器对于同一域名的并发 | n代农" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -140,19 +136,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/12/29/九种浏览器端缓存方法/" title="九种浏览器端缓存">
-  <strong>上一篇：</strong><br/>
-  <span>
-  九种浏览器端缓存</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/09/21/使用浏览器缓存/"  title="使用浏览器缓存">
+<a href="/2015/12/29/九种浏览器端缓存方法/"  title="九种浏览器端缓存">
  <strong>下一篇：</strong><br/> 
- <span>使用浏览器缓存
+ <span>九种浏览器端缓存
 </span>
 </a>
 </div>
@@ -167,7 +155,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#提高浏览器并发连接数"><span class="toc-number">1.</span> <span class="toc-text">提高浏览器并发连接数</span></a></li></ol>
  
   </div>
 
