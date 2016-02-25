@@ -81,6 +81,87 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/02/25/javascript-多线程/" title="javascript  多线程" itemprop="url">javascript  多线程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-25T01:19:48.000Z" itemprop="datePublished"> 发表于 2016-02-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="javascript_多线程">javascript  多线程</h2><h4 id="一_webwork">一 webwork</h4><blockquote>
+<p>Web Workers 是 HTML5 提供的一个javascript多线程解决方案，Web Worker的基本原理就是在当前javascript的主线程中，使用Worker类加载一个javascript文件来开辟一个新的线程，起到互不阻塞执行的效果，并且提供主线程和新线程之间数据交换的接口：postMessage，onmessage。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//worker.js</span></span><br><span class="line">onmessage =<span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> d = evt.data;<span class="comment">//通过evt.data获得发送来的数据</span></span><br><span class="line">  postMessage( d );<span class="comment">//将获取到的数据发送会主线程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="comment">//WEB页主线程</span></span><br><span class="line"><span class="keyword">var</span> worker =<span class="keyword">new</span> Worker(<span class="string">"worker.js"</span>); <span class="comment">//创建一个Worker对象并向它传递将在新线程中执行的脚本的URL</span></span><br><span class="line"> worker.postMessage(<span class="string">"hello world"</span>);     <span class="comment">//向worker发送数据</span></span><br><span class="line"> worker.onmessage =<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;     <span class="comment">//接收worker传过来的数据函数</span></span><br><span class="line">   <span class="built_in">console</span>.log(evt.data);              <span class="comment">//输出worker发送来的数据</span></span><br><span class="line"> &#125;</span><br><span class="line"> </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">body</span>&gt;</span><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="WEB主线程:">WEB主线程:</h4><blockquote>
+<p>1.通过 worker = new Worker( url ) 加载一个JS文件来创建一个worker，同时返回一个worker实例。</p>
+<p>2.通过worker.postMessage( data ) 方法来向worker发送数据。</p>
+<p>3.绑定worker.onmessage方法来接收worker发送过来的数据。</p>
+<p>4.可以使用 worker.terminate() 来终止一个worker的执行。</p>
+</blockquote>
+<h4 id="worker新线程：">worker新线程：</h4><p>1.通过postMessage( data ) 方法来向主线程发送数据。</p>
+<p>2.绑定onmessage方法来接收主线程发送过来的数据。</p>
+<h4 id="我们可以做什么：">我们可以做什么：</h4><blockquote>
+<p>1.可以加载一个JS进行大量的复杂计算而不挂起主进程，并通过postMessage，onmessage进行通信</p>
+<p>2.可以在worker中通过importScripts(url)加载另外的脚本文件</p>
+<p>3.可以使用 setTimeout(), clearTimeout(), setInterval(), and clearInterval()</p>
+<p>4.可以使用XMLHttpRequest来发送请求</p>
+<p>5.可以访问navigator的部分属性</p>
+</blockquote>
+<h4 id="有那些局限性：">有那些局限性：</h4><blockquote>
+<p>1.不能跨域加载JS</p>
+<p>2.worker内代码不能访问DOM</p>
+<p>3.各个浏览器对Worker的实现不大一致，例如FF里允许worker中创建新的worker,而Chrome中就不行</p>
+<p>4.不是每个浏览器都支持这个新特性</p>
+</blockquote>
+<h4 id="Concurrent-Thread-js_实现多线程">Concurrent.Thread.js 实现多线程</h4><pre><code>Concurrent.Thread.create(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+    <span class="keyword">var</span> i = <span class="number">0</span>;
+    <span class="keyword">while</span> ( <span class="number">1</span> ) {
+        <span class="built_in">document</span>.body.innerHTML += i++ + <span class="string">"&lt;br&gt;"</span>;
+    }
+});
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/02/17/css3-filter/" title="css3--filter" itemprop="url">css3--filter</a>
   </h1>
   <p class="article-author">By
