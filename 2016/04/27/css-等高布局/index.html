@@ -4,23 +4,41 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>移动端的meta | n代农</title>
+    <title>css 等高布局 | n代农</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="ws">
     
 
     
-    <meta name="description" content="12345678910111213141516171819202122232425262728293031&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, user-scalable=no&quot; /&amp;gt;&amp;lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=">
+    <meta name="description" content="CSS  等高布局
+
+
+“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
+123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bottom:-100000px;&amp;#125;
+
+display:table-cell下等高布局实现 利用table的同行单">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端的meta">
-<meta property="og:url" content="http://wangdashuai.com/2015/09/21/移动端的meta/index.html">
+<meta property="og:title" content="css 等高布局">
+<meta property="og:url" content="http://wangdashuai.com/2016/04/27/css-等高布局/index.html">
 <meta property="og:site_name" content="n代农">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, user-scalable=no&quot; /&amp;gt;&amp;lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=">
-<meta property="og:updated_time" content="2015-09-21T04:06:00.000Z">
+<meta property="og:description" content="CSS  等高布局
+
+
+“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
+123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bottom:-100000px;&amp;#125;
+
+display:table-cell下等高布局实现 利用table的同行单">
+<meta property="og:updated_time" content="2016-04-27T05:36:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端的meta">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, user-scalable=no&quot; /&amp;gt;&amp;lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=">
+<meta name="twitter:title" content="css 等高布局">
+<meta name="twitter:description" content="CSS  等高布局
+
+
+“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
+123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bottom:-100000px;&amp;#125;
+
+display:table-cell下等高布局实现 利用table的同行单">
 
     
     <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
@@ -80,14 +98,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/21/移动端的meta/" title="移动端的meta" itemprop="url">移动端的meta</a>
+      <a href="/2016/04/27/css-等高布局/" title="css 等高布局" itemprop="url">css 等高布局</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-21T04:03:03.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    <time datetime="2016-04-27T05:27:20.000Z" itemprop="datePublished"> 发表于 2016-04-27</time>
     
   </p>
 </header>
@@ -100,7 +118,19 @@
 		
 		</div>
 		
-		<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, user-scalable=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span>content=<span class="string">"telephone=no, email=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, user-scalable=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;&lt;!-- 删除苹果默认的工具栏和菜单栏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;&lt;!-- 设置苹果工具栏颜色 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telphone=no, email=no"</span> /&gt;&lt;!-- 忽略页面中的数字识别为电话，忽略email识别 --&gt;</span><br><span class="line">&lt;!-- 启用<span class="number">360</span>浏览器的极速模式(webkit) --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"renderer"</span> content=<span class="string">"webkit"</span>&gt;</span><br><span class="line">&lt;!-- 避免IE使用兼容模式 --&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"IE=edge"</span>&gt;</span><br><span class="line">&lt;!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"HandheldFriendly"</span> content=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!-- 微软的老式浏览器 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"MobileOptimized"</span> content=<span class="string">"320"</span>&gt;</span><br><span class="line">&lt;!-- uc强制竖屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"screen-orientation"</span> content=<span class="string">"portrait"</span>&gt;</span><br><span class="line">&lt;!-- QQ强制竖屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-orientation"</span> content=<span class="string">"portrait"</span>&gt;</span><br><span class="line">&lt;!-- UC强制全屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"full-screen"</span> content=<span class="string">"yes"</span>&gt;</span><br><span class="line">&lt;!-- QQ强制全屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-fullscreen"</span> content=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!-- UC应用模式 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"browsermode"</span> content=<span class="string">"application"</span>&gt;</span><br><span class="line">&lt;!-- QQ应用模式 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-page-mode"</span> content=<span class="string">"app"</span>&gt;</span><br><span class="line">&lt;!-- windows phone 点击无高光 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"msapplication-tap-highlight"</span> content=<span class="string">"no"</span>&gt;</span><br><span class="line">&lt;!-- 适应移动端end --&gt;</span><br></pre></td></tr></table></figure>  
+		<p><strong> CSS  等高布局</strong></p>
+<blockquote>
+<ol>
+<li><p>“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.wrap&#123;overflow:hidden;&#125; <span class="comment">/*外容器*/</span> </span><br><span class="line">.row&#123;padding-bottom:<span class="number">100000</span>px;margin-bottom:-<span class="number">100000</span>px;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>display:table-cell下等高布局实现<br> 利用table的同行单元格等高实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;display:table-row;&#125;</span><br><span class="line">.row&#123;display:table-cell;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>两者可以一起使用达到兼容IE67</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -108,7 +138,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/html5/">html5</a>
+  <span></span> <a href="/tags/css/">css</a>
   </div>
 
 </div>
@@ -117,7 +147,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://wangdashuai.com/2015/09/21/移动端的meta/" data-title="移动端的meta | n代农" data-tsina="null" class="share clearfix">
+	  <div data-url="http://wangdashuai.com/2016/04/27/css-等高布局/" data-title="css 等高布局 | n代农" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -130,19 +160,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/09/21/css-图片剧中/" title="css 图片剧中">
-  <strong>上一篇：</strong><br/>
-  <span>
-  css 图片剧中</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/09/21/If语句的变形/"  title="If语句的变形">
+<a href="/2016/04/07/gulp简单demo/"  title="gulp简单demo">
  <strong>下一篇：</strong><br/> 
- <span>If语句的变形
+ <span>gulp简单demo
 </span>
 </a>
 </div>
