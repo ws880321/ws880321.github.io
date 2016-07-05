@@ -4,38 +4,53 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>css 等高布局 | n代农</title>
+    <title>CORS 跨域 | n代农</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="ws">
     
 
     
-    <meta name="description" content="CSS  等高布局
+    <meta name="description" content="CORS 跨域 
 
-“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
-123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bottom:-100000px;&amp;#125;
+CORS能做什么：
+正常使用AJAX会需要正常考虑跨域问题，所以伟大的程序员们又折腾出了一系列跨域问题的解决方案，如JSONP、flash、ifame、xhr2等等。
 
-display:table-cell下等高布局实现 利用table的同行单元">
+
+
+
+CORS的原理：
+
+CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交跨域 AJAX 请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css 等高布局">
-<meta property="og:url" content="http://wangdashuai.com/2016/04/27/css-等高布局/index.html">
+<meta property="og:title" content="CORS 跨域">
+<meta property="og:url" content="http://wangdashuai.com/2016/05/05/CORS-跨域/index.html">
 <meta property="og:site_name" content="n代农">
-<meta property="og:description" content="CSS  等高布局
+<meta property="og:description" content="CORS 跨域 
 
-“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
-123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bottom:-100000px;&amp;#125;
+CORS能做什么：
+正常使用AJAX会需要正常考虑跨域问题，所以伟大的程序员们又折腾出了一系列跨域问题的解决方案，如JSONP、flash、ifame、xhr2等等。
 
-display:table-cell下等高布局实现 利用table的同行单元">
-<meta property="og:updated_time" content="2016-04-27T05:40:03.000Z">
+
+
+
+CORS的原理：
+
+CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交跨域 AJAX 请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。">
+<meta property="og:updated_time" content="2016-07-05T09:51:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css 等高布局">
-<meta name="twitter:description" content="CSS  等高布局
+<meta name="twitter:title" content="CORS 跨域">
+<meta name="twitter:description" content="CORS 跨域 
 
-“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
-123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bottom:-100000px;&amp;#125;
+CORS能做什么：
+正常使用AJAX会需要正常考虑跨域问题，所以伟大的程序员们又折腾出了一系列跨域问题的解决方案，如JSONP、flash、ifame、xhr2等等。
 
-display:table-cell下等高布局实现 利用table的同行单元">
+
+
+
+CORS的原理：
+
+CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交跨域 AJAX 请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。">
 
     
     <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
@@ -95,14 +110,14 @@ display:table-cell下等高布局实现 利用table的同行单元">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/27/css-等高布局/" title="css 等高布局" itemprop="url">css 等高布局</a>
+      <a href="/2016/05/05/CORS-跨域/" title="CORS 跨域" itemprop="url">CORS 跨域</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-27T05:27:20.000Z" itemprop="datePublished"> 发表于 2016-04-27</time>
+    <time datetime="2016-05-05T09:33:30.000Z" itemprop="datePublished"> 发表于 2016-05-05</time>
     
   </p>
 </header>
@@ -115,26 +130,36 @@ display:table-cell下等高布局实现 利用table的同行单元">
 		
 		</div>
 		
-		<p><strong> CSS  等高布局</strong></p>
-<ol>
-<li><p>“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.wrap&#123;overflow:hidden;&#125; <span class="comment">/*外容器*/</span> </span><br><span class="line">.row&#123;padding-bottom:<span class="number">100000</span>px;margin-bottom:-<span class="number">100000</span>px;&#125;</span><br></pre></td></tr></table></figure>
+		<p><strong><em> CORS 跨域 </em></strong></p>
+<ul>
+<li>CORS能做什么：<blockquote>
+<p>正常使用AJAX会需要正常考虑跨域问题，所以伟大的程序员们又折腾出了一系列跨域问题的解决方案，如JSONP、flash、ifame、xhr2等等。</p>
+</blockquote>
 </li>
-<li><p>display:table-cell下等高布局实现<br> 利用table的同行单元格等高实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;display:table-row;&#125;</span><br><span class="line">.row&#123;display:table-cell;&#125;</span><br></pre></td></tr></table></figure>
+</ul>
+<ul>
+<li><p>CORS的原理：</p>
+<blockquote>
+<p>CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交跨域 AJAX 请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。</p>
+</blockquote>
 </li>
-</ol>
-<p>两者可以一起使用达到兼容IE67</p>
+<li><p>CORS浏览器支持情况:</p>
+<blockquote>
+<p>PC上的现代浏览器都能友好的支持，除了IE9-，不过前端工程师对这种情况早应该习惯了…</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>用法：<blockquote>
+<p>在请求头加入Access-Control-Allow-Origin：* </p>
+</blockquote>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
 
 </div>
 
@@ -142,7 +167,7 @@ display:table-cell下等高布局实现 利用table的同行单元">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://wangdashuai.com/2016/04/27/css-等高布局/" data-title="css 等高布局 | n代农" data-tsina="null" class="share clearfix">
+	  <div data-url="http://wangdashuai.com/2016/05/05/CORS-跨域/" data-title="CORS 跨域 | n代农" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +180,11 @@ display:table-cell下等高布局实现 利用table的同行单元">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/05/CORS-跨域/" title="CORS 跨域">
-  <strong>上一篇：</strong><br/>
-  <span>
-  CORS 跨域</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/07/gulp简单demo/"  title="gulp简单demo">
+<a href="/2016/04/27/css-等高布局/"  title="css 等高布局">
  <strong>下一篇：</strong><br/> 
- <span>gulp简单demo
+ <span>css 等高布局
 </span>
 </a>
 </div>
