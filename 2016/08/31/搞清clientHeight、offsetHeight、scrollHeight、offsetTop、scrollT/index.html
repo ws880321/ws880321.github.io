@@ -4,29 +4,62 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>不同浏览器对于同一域名的并发 | n代农</title>
+    <title>clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT | n代农</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="ws">
     
 
     
-    <meta name="description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
- 提高浏览器并发连接数 
-阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在H">
+    <meta name="description" content="clientHeight
+包括padding但不包括border、水平滚动条、margin的元素的高度。对于inline的元素这个属性一直是0，
+
+
+
+
+offsetHeight
+
+包括padding、border、水平滚动条，但不包括margin的元素的高度。对于inline的元素这个属性一直是0，
+
+
+scrollHeight
+
+因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不同浏览器对于同一域名的并发">
-<meta property="og:url" content="http://wangdashuai.com/2016/01/05/不同浏览器对于同一域名的并发/index.html">
+<meta property="og:title" content="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT">
+<meta property="og:url" content="http://wangdashuai.com/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/index.html">
 <meta property="og:site_name" content="n代农">
-<meta property="og:description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
- 提高浏览器并发连接数 
-阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在H">
-<meta property="og:updated_time" content="2016-01-05T07:07:30.000Z">
+<meta property="og:description" content="clientHeight
+包括padding但不包括border、水平滚动条、margin的元素的高度。对于inline的元素这个属性一直是0，
+
+
+
+
+offsetHeight
+
+包括padding、border、水平滚动条，但不包括margin的元素的高度。对于inline的元素这个属性一直是0，
+
+
+scrollHeight
+
+因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动">
+<meta property="og:updated_time" content="2016-08-31T07:36:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不同浏览器对于同一域名的并发">
-<meta name="twitter:description" content="当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。
- 提高浏览器并发连接数 
-阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在H">
+<meta name="twitter:title" content="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT">
+<meta name="twitter:description" content="clientHeight
+包括padding但不包括border、水平滚动条、margin的元素的高度。对于inline的元素这个属性一直是0，
+
+
+
+
+offsetHeight
+
+包括padding、border、水平滚动条，但不包括margin的元素的高度。对于inline的元素这个属性一直是0，
+
+
+scrollHeight
+
+因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动">
 
     
     <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
@@ -86,14 +119,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/05/不同浏览器对于同一域名的并发/" title="不同浏览器对于同一域名的并发" itemprop="url">不同浏览器对于同一域名的并发</a>
+      <a href="/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/" title="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT" itemprop="url">clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-05T06:46:06.000Z" itemprop="datePublished"> 发表于 2016-01-05</time>
+    <time datetime="2016-08-31T07:27:48.000Z" itemprop="datePublished"> 发表于 2016-08-31</time>
     
   </p>
 </header>
@@ -106,10 +139,29 @@
 		
 		</div>
 		
-		<p>当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。</p>
-<p><strong> 提高浏览器并发连接数 </strong></p>
-<p>阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP/1.0下，IE6的并发连接数可以达到4个。在其它浏览器也有类似的限制，一般是4~8个。这个时候，如果浏览器同时对某一域名发起多个请求，超过了限制就会出现等待，也就是阻挡。</p>
-<p>那么为了解决阻挡这一问题，我们可以对某些URL的域名分散处理，比如我们的图片域名，一般用类似img.guoweiwei.com的域名，当一个页面包含20多张图片的时候，那至少有10几个请求会被阻挡，而如果我们分散到img0.guoweiwei.com/img1.guoweiwei.com/img2.guoweiwei.com/…等不同域名的时候，至少这20个图片请求会并发进行,网站打开速度会明显提升很多。类似的，可以对一些css/js的域名同样处理</p>
+		<ul>
+<li>clientHeight<blockquote>
+<p>包括padding但不包括border、水平滚动条、margin的元素的高度。对于inline的元素这个属性一直是0，</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>offsetHeight</p>
+<blockquote>
+<p>包括padding、border、水平滚动条，但不包括margin的元素的高度。对于inline的元素这个属性一直是0，</p>
+</blockquote>
+</li>
+<li><p>scrollHeight</p>
+<blockquote>
+<p>因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，scrollHeight代表包括当前不可见部分的元素的高度。而可见部分的高度其实就是clientHeight，也就是scrollHeight&gt;=clientHeight 。在有滚动条时讨论scrollHeight才有意义，在没有滚动条时scrollHeight==clientHeight</p>
+</blockquote>
+</li>
+<li><p>scrollTop</p>
+<blockquote>
+<p>代表在有滚动条时，滚动条向下滚动的距离也就是元素顶部被遮住部分的高度。在没有滚动条时scrollTop==0</p>
+</blockquote>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -118,7 +170,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/浏览器/">浏览器</a>
+  <span></span> <a href="/tags/css/">css</a>
   </div>
 
 </div>
@@ -127,7 +179,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://wangdashuai.com/2016/01/05/不同浏览器对于同一域名的并发/" data-title="不同浏览器对于同一域名的并发 | n代农" data-tsina="null" class="share clearfix">
+	  <div data-url="http://wangdashuai.com/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/" data-title="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT | n代农" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -140,19 +192,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/01/12/HTML5的3个API/" title="HTML5的全屏API">
-  <strong>上一篇：</strong><br/>
-  <span>
-  HTML5的全屏API</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/12/29/九种浏览器端缓存方法/"  title="九种浏览器端缓存">
+<a href="/2016/05/05/CORS-跨域/"  title="CORS 跨域">
  <strong>下一篇：</strong><br/> 
- <span>九种浏览器端缓存
+ <span>CORS 跨域
 </span>
 </a>
 </div>
