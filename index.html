@@ -81,6 +81,101 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/11/17/call-apply-bind/" title="call apply bind" itemprop="url">call apply bind</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-17T05:59:40.000Z" itemprop="datePublished"> 发表于 2016-11-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><strong><em> 1、call() </em></strong></p>
+<p><code>bash
+fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时指定的this值，可能的值为：</p>
+<ul>
+<li>不传，或者传null，undefined， this指向window对象</li>
+<li>传递另一个函数的函数名fun2，this指向函数fun2的引用</li>
+<li>值为原始值(数字，字符串，布尔值),this会指向该原始值的自动包装对象，如 String、Number、Boolean</li>
+<li>传递一个对象，函数中的this指向这个对象</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">a.call(b);  <span class="comment">// function b()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>经常会看到这种使用情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line">list(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);  <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>为什么能实现这样的功能将arguments转成数组？首先call了之后，this指向了所传进去的arguments。我们可以假设slice方法的内部实现是这样子的：创建一个新数组，然后for循环遍历this，将this[i]一个个地赋值给新数组，最后返回该新数组。因此也就可以理解能实现这样的功能了。</p>
+<p><strong><em>  2、apply() </em></strong></p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/ Chrome <span class="number">14</span> 以及 Internet Explorer <span class="number">9</span> 仍然不接受类数组对象。</span><br><span class="line"><span class="comment">// thisArg的可能值和call一样</span></span><br><span class="line">fun.apply(thisArg[, argsArray])</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, numbers);</span><br><span class="line"><span class="built_in">console</span>.log(max)  <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<p>平时Math.max只能这样子用：Math.max(5,6,2,3,7);<br>利用apply的第二个参数是数组的特性，从而能够简便地从数组中找到最大值。</p>
+<p><strong><em> 3、bind </em></strong></p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">fun.bind(thisArg[, arg1[, arg2[, ...]]]);</span><br></pre></td></tr></table></figure>
+<p>bind()方法会创建一个新函数，称为绑定函数。</p>
+<p>bind是ES5新增的一个方法，不会执行对应的函数（call或apply会自动执行对应的函数），而是返回对绑定函数的引用。</p>
+<p>当调用这个绑定函数时，thisArg参数作为 this，第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
+<p>简单地说，bind会产生一个新的函数，这个函数可以有预设的参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> leadingThirtysevenList = list.bind(<span class="literal">undefined</span>, <span class="number">37</span>); <span class="comment">// 绑定函数</span></span><br><span class="line"><span class="keyword">var</span> list = leadingThirtysevenList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 调用绑定函数</span></span><br><span class="line"><span class="built_in">console</span>.log(list); <span class="comment">// [37, 1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>把类数组换成真正的数组，bind能够更简单地使用：</p>
+<ul>
+<li>apply用法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">slice.apply(<span class="built_in">arguments</span>);  <span class="comment">// 类似对象的方法那样调用</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>bind用法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> unboundSlice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"> <span class="keyword">var</span> slice = <span class="built_in">Function</span>.prototype.apply.bind(unboundSlice);</span><br><span class="line"> <span class="comment">// ...</span></span><br><span class="line">slice(<span class="built_in">arguments</span>);  <span class="comment">// 直接调用，简单</span></span><br></pre></td></tr></table></figure>
+<p><strong><em> 4、区别 </em></strong></p>
+<p>相同之处：改变函数体内 this 的指向。<br>不同之处：</p>
+<p><em>call、apply的区别：接受参数的方式不一样。
+</em>bind：不立即执行。而apply、call 立即执行。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/" title="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT" itemprop="url">clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT</a>
   </h1>
   <p class="article-author">By
@@ -887,70 +982,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/21/常用的-JavaScript-检测浏览器为-IE-是哪个版本的代码，包括是否是最人极端厌恶的-ie6-识别与检测。/" title="常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测" itemprop="url">常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-21T06:05:55.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> isIE</span>=!!window.ActiveXObject;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE6</span>=isIE&amp;&amp;!window.XMLHttpRequest;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE8</span>=isIE&amp;&amp;!!document.documentMode;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE7</span>=isIE&amp;&amp;!isIE6&amp;&amp;!isIE8;</span><br><span class="line"><span class="keyword">if</span> (isIE)&#123;</span><br><span class="line">    <span class="keyword">if</span> (isIE6)&#123;</span><br><span class="line">		alert(<span class="string">"ie6"</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (isIE8)&#123;</span><br><span class="line">		alert(<span class="string">"ie8"</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (isIE7)&#123;</span><br><span class="line">		alert(<span class="string">"ie7"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后是一个稍微短的 js 判断是否 ie 的方法：<br>这个貌似是利用 IE 中 JScript所特有的条件编译或曰条件注释来区分 IE 和非 IE 这里的IE/非IE均是针对内核而言，以IE为内核的浏览器将视为IE</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ie</span> = <span class="number">0</span><span class="comment">/*@cc_on+1@*/</span>;</span><br></pre></td></tr></table></figure>
-<p>一个最短的 js 判断 ie 或非 ie 的代码，大小仅仅 7bytes：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ie = !+<span class="string">'\v1'</span>;</span><br></pre></td></tr></table></figure>
-<p>2010年1月，一位俄国人利用了IE与标准浏览器在处理数组的toString方法的差异，仅6bytes就完美完成了是否IE浏览器的检测：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ie</span> = !-[<span class="number">1</span>,];</span><br></pre></td></tr></table></figure>
-<p>利用这些发现，我们可以使代码写的更短。如今检测是否为 IE6 其实可以写成：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ie6=!-[<span class="number">1</span>,]&amp;&amp;!<span class="built_in">window</span>.XMLHttpRequest;</span><br></pre></td></tr></table></figure>
-<p>之前那大段累赘的分析navigator，然后正则比较的方式，后面的 js 方法是不是效率更</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/javascript/">javascript</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -971,11 +1002,15 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>3</sup></a></li>
 			
 		
 			
@@ -984,10 +1019,6 @@
 		
 			
 				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>2</sup></a></li>
 			
 		
 			
