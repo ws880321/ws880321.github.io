@@ -1,0 +1,613 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>n代农</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ws">
+    
+
+    
+    <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="n代农">
+<meta property="og:url" content="http://wangdashuai.com/page/3/index.html">
+<meta property="og:site_name" content="n代农">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="n代农">
+<meta name="twitter:description">
+
+    
+    <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="n代农" title="n代农"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="n代农">n代农</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:wangdashuai.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/常用的-JavaScript-检测浏览器为-IE-是哪个版本的代码，包括是否是最人极端厌恶的-ie6-识别与检测。/" title="常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测" itemprop="url">常用的 JavaScript 检测浏览器为 IE 是哪个版本的代码，包括是否是最人极端厌恶的 ie6 识别与检测</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T06:05:55.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> isIE</span>=!!window.ActiveXObject;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE6</span>=isIE&amp;&amp;!window.XMLHttpRequest;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE8</span>=isIE&amp;&amp;!!document.documentMode;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> isIE7</span>=isIE&amp;&amp;!isIE6&amp;&amp;!isIE8;</span><br><span class="line"><span class="keyword">if</span> (isIE)&#123;</span><br><span class="line">    <span class="keyword">if</span> (isIE6)&#123;</span><br><span class="line">		alert(<span class="string">"ie6"</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (isIE8)&#123;</span><br><span class="line">		alert(<span class="string">"ie8"</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (isIE7)&#123;</span><br><span class="line">		alert(<span class="string">"ie7"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是一个稍微短的 js 判断是否 ie 的方法：<br>这个貌似是利用 IE 中 JScript所特有的条件编译或曰条件注释来区分 IE 和非 IE 这里的IE/非IE均是针对内核而言，以IE为内核的浏览器将视为IE</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ie</span> = <span class="number">0</span><span class="comment">/*@cc_on+1@*/</span>;</span><br></pre></td></tr></table></figure>
+<p>一个最短的 js 判断 ie 或非 ie 的代码，大小仅仅 7bytes：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ie = !+<span class="string">'\v1'</span>;</span><br></pre></td></tr></table></figure>
+<p>2010年1月，一位俄国人利用了IE与标准浏览器在处理数组的toString方法的差异，仅6bytes就完美完成了是否IE浏览器的检测：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ie</span> = !-[<span class="number">1</span>,];</span><br></pre></td></tr></table></figure>
+<p>利用这些发现，我们可以使代码写的更短。如今检测是否为 IE6 其实可以写成：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ie6=!-[<span class="number">1</span>,]&amp;&amp;!<span class="built_in">window</span>.XMLHttpRequest;</span><br></pre></td></tr></table></figure>
+<p>之前那大段累赘的分析navigator，然后正则比较的方式，后面的 js 方法是不是效率更</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/使用浏览器缓存/" title="使用浏览器缓存" itemprop="url">使用浏览器缓存</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T05:55:20.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <hr>
+<p>当PageSpeed Insights检测到您的服务器响应不包含明确的缓存标头或某些资源被指定只缓存一小段时间时，就会触发此规则。</p>
+<h3 id="概览">概览</h3><p>如果用户会多次访问您的网站，那么静态资源的浏览器缓存可以节省用户的时间。缓存标头应当应用到所有可缓存的静态资源中，而不仅仅是应用到一小部分静态资源（例如，图片）中。可缓存的资源包括JS和CSS文件、图像文件及其他二进制对象文件（媒体文件和PDF文件等）。通常情况下，HTML不是静态资源，默认情况下不应被视为可缓存资源。您应考虑哪些缓存政策适用于您网站的HTML。—</p>
+<h3 id="建议">建议</h3><p>为您的服务器启用浏览器缓存。静态资源应该至少有一周的缓存有效期。广告或小部件这类的第三方资源也应该至少有一天的缓存有效期。对于所有可缓存资源，我们建议您进行以下设置：</p>
+<p>将Expires设为将来日期，至少为一周，最多为一年（我们倾向于设置Expires，而不设置Cache-Control: max-age，因为前者受支持的范围更为广泛）。请勿将其设为超过一年的将来日期，因为这样就违反了RFC准则。<br>如果您知道资源将具体在何时发生变化，则可以设置较短的过期日期。然而，如果您认为资源“可能将要发生变化”，但又不知道具体时间，则应设置较长的过期日期，并使用网址指纹（如下所述）。<br>Expires和Cache-Control: max-age标头</p>
+<p>这些标头用于指定相应时间段，浏览器可在指定的这段时间内使用已缓存的资源，而无需查看网络服务器是否提供了新版资源。这些缓存标头功能强大，没有任何应用条件限制。在设置这些标头并下载资源后，浏览器不会为资源发出任何GET请求，除非过期日期到期或达到时间最大值，亦或是用户清除了缓存。</p>
+<h3 id="Last-Modifed和ETag标头">Last-Modifed和ETag标头</h3><p>这些标头可用于指定浏览器应如何确定用于缓存的文件是否相同。在Last-Modified标头中指定的是日期，而在ETag标头中指定的则可以是唯一标识资源的任意值（通常为文件版本或内容哈希值）。Last-Modified是功能“较弱”的缓存标头，因为浏览器会使用试探法来确定是否需要从缓存中抓取内容。</p>
+<p>借助这些标头，浏览器可以通过在用户明确重新加载页面时发出条件式GET请求，有效地更新其已缓存资源。除非您在服务器端更改资源，否则条件式GET请求不会返回完整的响应，因此相较于完整GET请求，此类请求的延迟较小。</p>
+<h3 id="我应使用哪个缓存标头？">我应使用哪个缓存标头？</h3><p>对于所有可缓存资源，指定一个Expires或Cache-Control max-age以及一个Last-Modified或ETag至关重要。您没必要同时指定Expires和Cache-Control: max-age；或同时指定Last-Modified和ETag。<br>使用网址指纹</p>
+<p>对于偶尔发生变化的资源，我们可以让浏览器缓存相应的资源，直到该资源在服务器上出现变化，而服务器则在此时通知浏览器有新版本可用。我们可以通过为每个版本的资源指定一个唯一网址来实现这一目的。例如，假定我们有一个名为“my_stylesheet.css”的资源。我们可以将文件重命名为“my_stylesheet_fingerprint.css”。当资源发生变化时，其指纹就会发生变化，对应的网址也会随之更改。网址一经更改，系统就会强制浏览器重新抓取资源。通过指纹，我们甚至可以为变化更为频繁的资源设置将来的过期日期。</p>
+<p>指纹识别的常用方法是使用对文件内容的哈希值进行编码的128位十六进制数。</p>
+<p>另一个策略是直接为新版应用创建新版目录，然后为版本目录中的各个版本放置所有资源。这样做的缺点是，如果各个版本中的资源未发生变化，则其网址将仍会更改以强制重新下载。使用内容哈希值不会遇到该问题，但这种方法稍微复杂一些。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/web/">web</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/css-图片剧中/" title="css 图片剧中" itemprop="url">css 图片剧中</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T05:53:00.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <pre><code class="bash"> .new_proimg{　
+    display: table-cell;　/*非IE的主流浏览器识别的垂直居中的方法*/　
+    vertical-align:middle;　/*非IE的主流浏览器识别的垂直居中的方法*/　
+    text-align:center;　/*设置水平居中*/　
+    *display: block;　/* 针对IE的Hack */　
+    *font-size: <span class="number">104</span>px;　/*约为高度的<span class="number">0.873</span>，<span class="number">120</span>*<span class="number">0.873</span> 约为<span class="number">104</span>*/　
+    *font-family:Arial;    　
+    width:<span class="number">120</span>px;　
+    height:<span class="number">120</span>px;　
+    margin-bottom: <span class="number">5</span>px;　
+    border: <span class="number">1</span>px solid <span class="comment">#eee;</span>
+}
+</code></pre>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/移动端的meta/" title="移动端的meta" itemprop="url">移动端的meta</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T04:03:03.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, user-scalable=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span>content=<span class="string">"telephone=no, email=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, user-scalable=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;&lt;!-- 删除苹果默认的工具栏和菜单栏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;&lt;!-- 设置苹果工具栏颜色 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telphone=no, email=no"</span> /&gt;&lt;!-- 忽略页面中的数字识别为电话，忽略email识别 --&gt;</span><br><span class="line">&lt;!-- 启用<span class="number">360</span>浏览器的极速模式(webkit) --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"renderer"</span> content=<span class="string">"webkit"</span>&gt;</span><br><span class="line">&lt;!-- 避免IE使用兼容模式 --&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"IE=edge"</span>&gt;</span><br><span class="line">&lt;!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"HandheldFriendly"</span> content=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!-- 微软的老式浏览器 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"MobileOptimized"</span> content=<span class="string">"320"</span>&gt;</span><br><span class="line">&lt;!-- uc强制竖屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"screen-orientation"</span> content=<span class="string">"portrait"</span>&gt;</span><br><span class="line">&lt;!-- QQ强制竖屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-orientation"</span> content=<span class="string">"portrait"</span>&gt;</span><br><span class="line">&lt;!-- UC强制全屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"full-screen"</span> content=<span class="string">"yes"</span>&gt;</span><br><span class="line">&lt;!-- QQ强制全屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-fullscreen"</span> content=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!-- UC应用模式 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"browsermode"</span> content=<span class="string">"application"</span>&gt;</span><br><span class="line">&lt;!-- QQ应用模式 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-page-mode"</span> content=<span class="string">"app"</span>&gt;</span><br><span class="line">&lt;!-- windows phone 点击无高光 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"msapplication-tap-highlight"</span> content=<span class="string">"no"</span>&gt;</span><br><span class="line">&lt;!-- 适应移动端end --&gt;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/html5/">html5</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/If语句的变形/" title="If语句的变形" itemprop="url">If语句的变形</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T02:46:44.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>当你需要写一个if语句的时候，不妨尝试另一种更简便的方法，用JavaScript中的逻辑操作符来代替。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var day=(new Date).getDay()===<span class="number">0</span>;</span><br><span class="line">//传统<span class="keyword">if</span>语句</span><br><span class="line"><span class="keyword">if</span> (day) &#123;</span><br><span class="line">  alert(<span class="string">'Today is Sunday!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">//运用逻辑与代替<span class="keyword">if</span></span><br><span class="line">day&amp;&amp;alert(<span class="string">'Today is Sunday!'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>比如上面的代码，首先得到今天的日期，如果是星期天，则弹窗，否则什么也不做。我们知道逻辑操作存在短路的情况，对于逻辑与表达式，只有两者都真才结果才为真，如果前面的day变量被判断为假了，那么对于整个与表达式来说结果就是假，所以就不会继续去执行后面的alert了，如果前面day为真，则还要继续执行后面的代码来确定整个表达式的真假。利用这点达到了if的效果。</p>
+<p>对于传统的if语句，如果执行体代码超过了1 条语句，则需要加花括号，而利用逗号表达式，可以执行任意条代码而不用加花括号。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">if</span>(conditoin) alert(<span class="number">1</span>),alert(<span class="number">2</span>),console.log(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="ws">ws</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>
