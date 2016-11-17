@@ -75,129 +75,377 @@
     <div id="container">
       <div id="main">
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/11/17/call-apply-bind/" title="call apply bind" itemprop="url">
-  
-    <h1 itemprop="name">call apply bind</h1>
+   
     
-     
-           <p itemprop="description" >1、call() 
-bash
-fun.call(thisArg[, arg1[, arg2[, ...]]])thisArg：fun函数运行时指定的this值，可能的值为：
-
-不传，或者传null，undefined， this指向window对象
-传递另一个函数的函数名fun2</p>
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/11/17/call-apply-bind/" title="call apply bind" itemprop="url">call apply bind</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-17T05:59:40.000Z" itemprop="datePublished"> 发表于 2016-11-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
         
-    
-    <time datetime="2016-11-17T05:59:40.000Z" itemprop="datePublished">2016-11-17</time>
-  </a>
-</section>
+        <p><strong><em> 1、call() </em></strong></p>
+<p><code>bash
+fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时指定的this值，可能的值为：</p>
+<ul>
+<li>不传，或者传null，undefined， this指向window对象</li>
+<li>传递另一个函数的函数名fun2，this指向函数fun2的引用</li>
+<li>值为原始值(数字，字符串，布尔值),this会指向该原始值的自动包装对象，如 String、Number、Boolean</li>
+<li>传递一个对象，函数中的this指向这个对象</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">a.call(b);  <span class="comment">// function b()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>经常会看到这种使用情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line">list(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);  <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>为什么能实现这样的功能将arguments转成数组？首先call了之后，this指向了所传进去的arguments。我们可以假设slice方法的内部实现是这样子的：创建一个新数组，然后for循环遍历this，将this[i]一个个地赋值给新数组，最后返回该新数组。因此也就可以理解能实现这样的功能了。</p>
+<p><strong><em>  2、apply() </em></strong></p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/ Chrome <span class="number">14</span> 以及 Internet Explorer <span class="number">9</span> 仍然不接受类数组对象。</span><br><span class="line"><span class="comment">// thisArg的可能值和call一样</span></span><br><span class="line">fun.apply(thisArg[, argsArray])</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, numbers);</span><br><span class="line"><span class="built_in">console</span>.log(max)  <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<p>平时Math.max只能这样子用：Math.max(5,6,2,3,7);<br>利用apply的第二个参数是数组的特性，从而能够简便地从数组中找到最大值。</p>
+<p><strong><em> 3、bind </em></strong></p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">fun.bind(thisArg[, arg1[, arg2[, ...]]]);</span><br></pre></td></tr></table></figure>
+<p>bind()方法会创建一个新函数，称为绑定函数。</p>
+<p>bind是ES5新增的一个方法，不会执行对应的函数（call或apply会自动执行对应的函数），而是返回对绑定函数的引用。</p>
+<p>当调用这个绑定函数时，thisArg参数作为 this，第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
+<p>简单地说，bind会产生一个新的函数，这个函数可以有预设的参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> leadingThirtysevenList = list.bind(<span class="literal">undefined</span>, <span class="number">37</span>); <span class="comment">// 绑定函数</span></span><br><span class="line"><span class="keyword">var</span> list = leadingThirtysevenList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 调用绑定函数</span></span><br><span class="line"><span class="built_in">console</span>.log(list); <span class="comment">// [37, 1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>把类数组换成真正的数组，bind能够更简单地使用：</p>
+<ul>
+<li>apply用法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">slice.apply(<span class="built_in">arguments</span>);  <span class="comment">// 类似对象的方法那样调用</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>bind用法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> unboundSlice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"> <span class="keyword">var</span> slice = <span class="built_in">Function</span>.prototype.apply.bind(unboundSlice);</span><br><span class="line"> <span class="comment">// ...</span></span><br><span class="line">slice(<span class="built_in">arguments</span>);  <span class="comment">// 直接调用，简单</span></span><br></pre></td></tr></table></figure>
+<p><strong><em> 4、区别 </em></strong></p>
+<p>相同之处：改变函数体内 this 的指向。<br>不同之处：</p>
+<p><em>call、apply的区别：接受参数的方式不一样。
+</em>bind：不立即执行。而apply、call 立即执行。</p>
 
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/" title="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT" itemprop="url">
-  
-    <h1 itemprop="name">clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT</h1>
-    
-     
-           <p itemprop="description" >clientHeight
-包括padding但不包括border、水平滚动条、margin的元素的高度。对于inline的元素这个属性一直是0，
-
-
-
-
-offsetHeight
-
-包括padding、border、水平滚动条，但不包括margin的元素的高度。对于inline的</p>
         
-    
-    <time datetime="2016-08-31T07:27:48.000Z" itemprop="datePublished">2016-08-31</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/05/CORS-跨域/" title="CORS 跨域" itemprop="url">
-  
-    <h1 itemprop="name">CORS 跨域</h1>
-    
-     
-           <p itemprop="description" >CORS 跨域 
-
-CORS能做什么：
-正常使用AJAX会需要正常考虑跨域问题，所以伟大的程序员们又折腾出了一系列跨域问题的解决方案，如JSONP、flash、ifame、xhr2等等。
-
-
-
-
-CORS的原理：
-
-CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CO</p>
         
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
     
-    <time datetime="2016-05-05T09:33:30.000Z" itemprop="datePublished">2016-05-05</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/27/css-等高布局/" title="css 等高布局" itemprop="url">
-  
-    <h1 itemprop="name">css 等高布局</h1>
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >CSS  等高布局
-
-“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 
-123.wrap&amp;#123;overflow:hidden;&amp;#125; /*外容器*/ .row&amp;#123;padding-bottom:100000px;margin-bot</p>
+      <a href="/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/" title="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT" itemprop="url">clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-31T07:27:48.000Z" itemprop="datePublished"> 发表于 2016-08-31</time>
+    
+  </p>
+</header>
+    <div class="article-content">
         
-    
-    <time datetime="2016-04-27T05:27:20.000Z" itemprop="datePublished">2016-04-27</time>
-  </a>
-</section>
+        <ul>
+<li>clientHeight<blockquote>
+<p>包括padding但不包括border、水平滚动条、margin的元素的高度。对于inline的元素这个属性一直是0，</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>offsetHeight</p>
+<blockquote>
+<p>包括padding、border、水平滚动条，但不包括margin的元素的高度。对于inline的元素这个属性一直是0，</p>
+</blockquote>
+</li>
+<li><p>scrollHeight</p>
+<blockquote>
+<p>因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，scrollHeight代表包括当前不可见部分的元素的高度。而可见部分的高度其实就是clientHeight，也就是scrollHeight&gt;=clientHeight 。在有滚动条时讨论scrollHeight才有意义，在没有滚动条时scrollHeight==clientHeight</p>
+</blockquote>
+</li>
+<li><p>scrollTop</p>
+<blockquote>
+<p>代表在有滚动条时，滚动条向下滚动的距离也就是元素顶部被遮住部分的高度。在没有滚动条时scrollTop==0</p>
+</blockquote>
+</li>
+</ul>
 
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/07/gulp简单demo/" title="gulp简单demo" itemprop="url">
-  
-    <h1 itemprop="name">gulp简单demo</h1>
-    
-     
-           <p itemprop="description" >gulp简单demo 
-
-1.package.json
-123456789101112131415161718&amp;#123;  &quot;name&quot;: &quot;gulp-require-demo&quot;,  &quot;version&quot;: &quot;1.0.0&quot;,  &quot;description&quot;: &quot;&quot;,  &quot;main&quot;</p>
         
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
     
-    <time datetime="2016-04-07T07:59:53.000Z" itemprop="datePublished">2016-04-07</time>
-  </a>
-</section>
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/05/CORS-跨域/" title="CORS 跨域" itemprop="url">CORS 跨域</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-05T09:33:30.000Z" itemprop="datePublished"> 发表于 2016-05-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><strong><em> CORS 跨域 </em></strong></p>
+<ul>
+<li>CORS能做什么：<blockquote>
+<p>正常使用AJAX会需要正常考虑跨域问题，所以伟大的程序员们又折腾出了一系列跨域问题的解决方案，如JSONP、flash、ifame、xhr2等等。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>CORS的原理：</p>
+<blockquote>
+<p>CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交跨域 AJAX 请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。</p>
+</blockquote>
+</li>
+<li><p>CORS浏览器支持情况:</p>
+<blockquote>
+<p>PC上的现代浏览器都能友好的支持，除了IE9-，不过前端工程师对这种情况早应该习惯了…</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>用法：<blockquote>
+<p>在请求头加入Access-Control-Allow-Origin：* </p>
+</blockquote>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/27/css-等高布局/" title="css 等高布局" itemprop="url">css 等高布局</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-27T05:27:20.000Z" itemprop="datePublished"> 发表于 2016-04-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><strong> CSS  等高布局</strong></p>
+<ol>
+<li><p>“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.wrap&#123;overflow:hidden;&#125; <span class="comment">/*外容器*/</span> </span><br><span class="line">.row&#123;padding-bottom:<span class="number">100000</span>px;margin-bottom:-<span class="number">100000</span>px;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>display:table-cell下等高布局实现<br> 利用table的同行单元格等高实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;display:table-row;&#125;</span><br><span class="line">.row&#123;display:table-cell;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>两者可以一起使用达到兼容IE67</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/07/gulp简单demo/" title="gulp简单demo" itemprop="url">gulp简单demo</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-07T07:59:53.000Z" itemprop="datePublished"> 发表于 2016-04-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><strong><em> gulp简单demo </em></strong></p>
+<ul>
+<li><p>1.package.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"gulp-require-demo"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"gulp"</span>: <span class="string">"^3.9.1"</span>,</span><br><span class="line">    <span class="string">"gulp-import-css"</span>: <span class="string">"^0.1.2"</span>,</span><br><span class="line">    <span class="string">"gulp-minify-css"</span>: <span class="string">"^1.2.4"</span>,</span><br><span class="line">    <span class="string">"gulp-requirejs-optimize"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"r.js"</span>: <span class="string">"^1.0.3"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.gulpfile.js</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp=<span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> requirejsOptimize=<span class="built_in">require</span>(<span class="string">'gulp-requirejs-optimize'</span>);</span><br><span class="line"><span class="keyword">var</span> importCss=<span class="built_in">require</span>(<span class="string">'gulp-import-css'</span>);</span><br><span class="line"><span class="keyword">var</span> cssmin = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line"></span><br><span class="line">打包js</span><br><span class="line">gulp.task(<span class="string">'js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> gulp.src(<span class="string">'js/m1/*'</span>+<span class="string">'_init.js'</span>)</span><br><span class="line">	.pipe(requirejsOptimize(&#123;</span><br><span class="line">		optimize:<span class="string">"none"</span></span><br><span class="line">	&#125;))</span><br><span class="line">	.pipe(gulp.dest(<span class="string">'dist/js'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"> 打包css</span><br><span class="line">gulp.task(<span class="string">'css'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	gulp.src(<span class="string">'css/**/*.css'</span>)</span><br><span class="line">	.pipe(importCss())</span><br><span class="line">	.pipe(cssmin())</span><br><span class="line">	.pipe(gulp.dest(<span class="string">'dist/css'</span>))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
 
 
 
@@ -205,7 +453,7 @@ CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CO</p>
 
 
 
-  <nav id="page-nav" class="clearfix unexpand">
+  <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
