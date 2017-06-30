@@ -81,6 +81,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/30/基于MVVM架构的SEO/" title="基于MVVM架构的SEO" itemprop="url">基于MVVM架构的SEO</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-30T09:58:43.000Z" itemprop="datePublished"> 发表于 2017-06-30</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>  &nbsp; &nbsp; 前端的MVVM架构已经发展有一段时间了，MVVM的交互性能高，然而SEO不理想。对于在项目早期的时候，SEO可能并不太重要，毕竟早期项目大多靠百度推广，花点钱就能摆平。但是当项目初具规模，用户数上升，推广费则不可同日而语，这时如何改进和优化SEO就渐渐变得重要了。</p>
+<p>SEO的本质即动态页面的静态化，由于前后端分离的开发方式已经是目前最主流的开发方式，Ajax也早已成为web开发中不可缺少的工具，页面都是由前端通过模版结合Ajax动态产生的，而搜索引擎的爬虫是不能够理解js代码的，所以，这种情况下，站点的SEO问题就出来了，爬虫只能爬到静态的模版而不能爬到真正有语义的内容，这当然不是我们所希望看到的。</p>
+<p>  &nbsp; &nbsp; 从我调研的SEO优化的结果中看，目前主要有两种方式：</p>
+<p>1 后端渲染</p>
+<p>SEO不需要针对站点中的所有页面，往往只有个别的页面需要优化，因此可以将这几个页面单独抽离出来让后台生成静态内容返回到前端。这样会有个缺点，这几个页面的重构将脱离MVVM系统，对于大多强迫症患者这点简直难以接受。即使像avalon这样 提供了 后端avalon渲染 的框架来说，目前看仍不成熟，而且从我使用的过程中看，通过 node-avalon 生成的页面需要不断与文件系统交互，因此在性能上我有点担忧。</p>
+<p>2 缓存快照</p>
+<p>&nbsp; &nbsp; 既然SEO的本质既是让爬虫得到静态话的页面内容，那么当爬虫进入站点的时候，何不缓存一个页面的快照给爬虫呢？更具体一点的实现思路是，当服务端识别到爬虫后，通过转发路由由后台实时生成一个静态页面，再返回给爬虫。而这一切早已有了现成的工具： prerender.io</p>
+<p>prerender.io 提供了在线缓存快照的服务，不过目前需要翻墙而且服务也是收费的。如果想在后端搭一个自己的prerender服务也是可以的， prerender 完全开源。</p>
+<p>实践中我的项目是nginx + avalon + java的，因此搭好自己的prerender服务后，配置下nginx就ok啦。</p>
+<p>下面是在项目中的nginx配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;&#10;    try_files $uri @prerender;&#10;       #&#36825;&#37324;&#26159;&#20010;&#22353;&#65292;root&#21644;index&#22343;&#19981;&#38656;&#35201;&#37197;&#32622;&#10;       #root   /mnt3/zhangx/static/avant_v2-dev/;&#10;       #index  index.html index.htm;&#10;    &#125;&#10;&#10;   location @prerender &#123;&#10;       # &#22914;&#26524;&#20351;&#29992;&#31532;&#19977;&#26041;prerender.io&#30340;&#26381;&#21153;&#65292; &#21017;&#38656;&#35201;&#37197;&#32622;token&#10;       #proxy_set_header X-Prerender-Token o3FCu6FeMLDWG9jcQPBl;&#10;       set $prerender 0;&#10;       if ($http_user_agent ~* &#34;baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator&#34;) &#123;&#10;           set $prerender 1;&#10;       &#125;&#10;       if ($args ~ &#34;_escaped_fragment_&#34;) &#123;&#10;           set $prerender 1;&#10;       &#125;&#10;       if ($http_user_agent ~ &#34;Prerender&#34;) &#123;&#10;           set $prerender 0;&#10;       &#125;&#10;       if ($uri ~ &#34;\.(js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)&#34;) &#123;&#10;           set $prerender 0;&#10;       &#125;&#10;&#10;       #resolve using Google&#39;s DNS server to force DNS resolution and prevent caching of IPs&#10;       resolver 8.8.8.8;&#10;&#10;       if ($prerender = 1) &#123;&#10;           #set $prerender &#34;service.prerender.io&#34;;&#10;           # &#36825;&#37324;&#26367;&#25442;&#25104;&#33258;&#24049;&#30340;&#26381;&#21153;&#10;           set $prerender &#34;test.meprint.com:3000&#34;;&#10;           rewrite .* /$scheme://$host$request_uri? break;&#10;           proxy_pass http://$prerender;&#10;       &#125;&#10;       if ($prerender = 0) &#123;&#10;           root   /mnt3/zhangx/static/avant_v2-dev/;&#10;           #rewrite .*/index.html break;&#10;       &#125;&#10;   &#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/11/17/call-apply-bind/" title="call apply bind" itemprop="url">call apply bind</a>
   </h1>
   <p class="article-author">By
@@ -390,71 +449,9 @@ fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时�
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/07/gulp简单demo/" title="gulp简单demo" itemprop="url">gulp简单demo</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-07T07:59:53.000Z" itemprop="datePublished"> 发表于 2016-04-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><strong><em> gulp简单demo </em></strong></p>
-<ul>
-<li><p>1.package.json</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"gulp-require-demo"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"gulp"</span>: <span class="string">"^3.9.1"</span>,</span><br><span class="line">    <span class="string">"gulp-import-css"</span>: <span class="string">"^0.1.2"</span>,</span><br><span class="line">    <span class="string">"gulp-minify-css"</span>: <span class="string">"^1.2.4"</span>,</span><br><span class="line">    <span class="string">"gulp-requirejs-optimize"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"r.js"</span>: <span class="string">"^1.0.3"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>2.gulpfile.js</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp=<span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> requirejsOptimize=<span class="built_in">require</span>(<span class="string">'gulp-requirejs-optimize'</span>);</span><br><span class="line"><span class="keyword">var</span> importCss=<span class="built_in">require</span>(<span class="string">'gulp-import-css'</span>);</span><br><span class="line"><span class="keyword">var</span> cssmin = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line"></span><br><span class="line">打包js</span><br><span class="line">gulp.task(<span class="string">'js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> gulp.src(<span class="string">'js/m1/*'</span>+<span class="string">'_init.js'</span>)</span><br><span class="line">	.pipe(requirejsOptimize(&#123;</span><br><span class="line">		optimize:<span class="string">"none"</span></span><br><span class="line">	&#125;))</span><br><span class="line">	.pipe(gulp.dest(<span class="string">'dist/js'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"> 打包css</span><br><span class="line">gulp.task(<span class="string">'css'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	gulp.src(<span class="string">'css/**/*.css'</span>)</span><br><span class="line">	.pipe(importCss())</span><br><span class="line">	.pipe(cssmin())</span><br><span class="line">	.pipe(gulp.dest(<span class="string">'dist/css'</span>))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -561,7 +558,7 @@ fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时�
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="/about" target="_blank" title="ws">ws</a>
 		
