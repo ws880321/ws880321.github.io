@@ -81,6 +81,64 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/01/05/不同浏览器对于同一域名的并发/" title="不同浏览器对于同一域名的并发" itemprop="url">不同浏览器对于同一域名的并发</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-05T06:46:06.000Z" itemprop="datePublished"> 发表于 2016-01-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。</p>
+<p><strong> 提高浏览器并发连接数 </strong></p>
+<p>阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP/1.0下，IE6的并发连接数可以达到4个。在其它浏览器也有类似的限制，一般是4~8个。这个时候，如果浏览器同时对某一域名发起多个请求，超过了限制就会出现等待，也就是阻挡。</p>
+<p>那么为了解决阻挡这一问题，我们可以对某些URL的域名分散处理，比如我们的图片域名，一般用类似img.guoweiwei.com的域名，当一个页面包含20多张图片的时候，那至少有10几个请求会被阻挡，而如果我们分散到img0.guoweiwei.com/img1.guoweiwei.com/img2.guoweiwei.com/…等不同域名的时候，至少这20个图片请求会并发进行,网站打开速度会明显提升很多。类似的，可以对一些css/js的域名同样处理</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/浏览器/">浏览器</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/12/29/九种浏览器端缓存方法/" title="九种浏览器端缓存" itemprop="url">九种浏览器端缓存</a>
   </h1>
   <p class="article-author">By
@@ -443,60 +501,6 @@
   <div class="article-tags">
   
   <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/21/移动端的meta/" title="移动端的meta" itemprop="url">移动端的meta</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-21T04:03:03.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, user-scalable=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span>content=<span class="string">"telephone=no, email=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, user-scalable=no"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;&lt;!-- 删除苹果默认的工具栏和菜单栏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;&lt;!-- 设置苹果工具栏颜色 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telphone=no, email=no"</span> /&gt;&lt;!-- 忽略页面中的数字识别为电话，忽略email识别 --&gt;</span><br><span class="line">&lt;!-- 启用<span class="number">360</span>浏览器的极速模式(webkit) --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"renderer"</span> content=<span class="string">"webkit"</span>&gt;</span><br><span class="line">&lt;!-- 避免IE使用兼容模式 --&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"IE=edge"</span>&gt;</span><br><span class="line">&lt;!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"HandheldFriendly"</span> content=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!-- 微软的老式浏览器 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"MobileOptimized"</span> content=<span class="string">"320"</span>&gt;</span><br><span class="line">&lt;!-- uc强制竖屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"screen-orientation"</span> content=<span class="string">"portrait"</span>&gt;</span><br><span class="line">&lt;!-- QQ强制竖屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-orientation"</span> content=<span class="string">"portrait"</span>&gt;</span><br><span class="line">&lt;!-- UC强制全屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"full-screen"</span> content=<span class="string">"yes"</span>&gt;</span><br><span class="line">&lt;!-- QQ强制全屏 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-fullscreen"</span> content=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!-- UC应用模式 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"browsermode"</span> content=<span class="string">"application"</span>&gt;</span><br><span class="line">&lt;!-- QQ应用模式 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"x5-page-mode"</span> content=<span class="string">"app"</span>&gt;</span><br><span class="line">&lt;!-- windows phone 点击无高光 --&gt;</span><br><span class="line">&lt;meta name=<span class="string">"msapplication-tap-highlight"</span> content=<span class="string">"no"</span>&gt;</span><br><span class="line">&lt;!-- 适应移动端end --&gt;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/html5/">html5</a>
   </div>
 
 </div>

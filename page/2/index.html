@@ -81,6 +81,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/04/27/css-等高布局/" title="css 等高布局" itemprop="url">css 等高布局</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-27T05:27:20.000Z" itemprop="datePublished"> 发表于 2016-04-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><strong> CSS  等高布局</strong></p>
+<ol>
+<li><p>“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.wrap&#123;overflow:hidden;&#125; <span class="comment">/*外容器*/</span> </span><br><span class="line">.row&#123;padding-bottom:<span class="number">100000</span>px;margin-bottom:-<span class="number">100000</span>px;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>display:table-cell下等高布局实现<br> 利用table的同行单元格等高实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;display:table-row;&#125;</span><br><span class="line">.row&#123;display:table-cell;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>两者可以一起使用达到兼容IE67</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/04/07/gulp简单demo/" title="gulp简单demo" itemprop="url">gulp简单demo</a>
   </h1>
   <p class="article-author">By
@@ -396,64 +460,6 @@
   <div class="article-tags">
   
   <span></span> <a href="/tags/html5/">html5</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/01/05/不同浏览器对于同一域名的并发/" title="不同浏览器对于同一域名的并发" itemprop="url">不同浏览器对于同一域名的并发</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2016-01-05T06:46:06.000Z" itemprop="datePublished"> 发表于 2016-01-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>当浏览器请求一个URL的时候，通过firebug我们可以发现大概有以下几个过程：阻挡、域名解析、建立连接、发送请求、等待响应、接收数据。后面四个跟用户的网络情况和你的服务器处理速度有关，本文重点说说前两个。</p>
-<p><strong> 提高浏览器并发连接数 </strong></p>
-<p>阻挡：不同的浏览器对单个域名的最大并发连接数有一定的限制，HTTP/1.0和HTTP/1.1也不相同。比如HTTP/1.1协议下，IE6的并发连接数限制是2个；而在HTTP/1.0下，IE6的并发连接数可以达到4个。在其它浏览器也有类似的限制，一般是4~8个。这个时候，如果浏览器同时对某一域名发起多个请求，超过了限制就会出现等待，也就是阻挡。</p>
-<p>那么为了解决阻挡这一问题，我们可以对某些URL的域名分散处理，比如我们的图片域名，一般用类似img.guoweiwei.com的域名，当一个页面包含20多张图片的时候，那至少有10几个请求会被阻挡，而如果我们分散到img0.guoweiwei.com/img1.guoweiwei.com/img2.guoweiwei.com/…等不同域名的时候，至少这20个图片请求会并发进行,网站打开速度会明显提升很多。类似的，可以对一些css/js的域名同样处理</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/浏览器/">浏览器</a>
   </div>
 
 </div>

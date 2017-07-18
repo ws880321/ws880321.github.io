@@ -81,6 +81,74 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/07/18/多重边框/" title="多重边框" itemprop="url">多重边框</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-18T06:48:18.000Z" itemprop="datePublished"> 发表于 2017-07-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>对于边框我们都非常熟悉了。边框是我们美化网页、增强样式最常用的手段之一。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line"><span class="class">.box</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"box"</span>&gt;</span></span><br><span class="line">    box</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>有些时候，我们的需求是给一个容器加上多重边框：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"outer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"inner"</span>&gt;</span></span><br><span class="line">        box</span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有时我在无法更改dom结构的话  就要借助css来实现 如 outline box-shadow</p>
+</blockquote>
+<h3 id="outline">outline</h3><blockquote>
+<p>outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line"> <span class="class">.box</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">outline</span>:<span class="value"><span class="number">1px</span> solid red</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">outline-offset</span>:<span class="value"><span class="number">15px</span></span></span>;//控制间距</span><br><span class="line"> &#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"box"</span>&gt;</span></span><br><span class="line">    box</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="box-shadow">box-shadow</h3><blockquote>
+<p>box-shadow 属性向框添加一个或多个阴影。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.box</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> blue</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>投影属性其实可以接受一个列表，我们可以一次赋予它多层投影，像这样：</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.box</span><span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> blue</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> orange</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span> red</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/06/30/基于MVVM架构的SEO/" title="基于MVVM架构的SEO" itemprop="url">基于MVVM架构的SEO</a>
   </h1>
   <p class="article-author">By
@@ -364,70 +432,6 @@ fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时�
   <div class="article-tags">
   
   <span></span> <a href="/tags/js/">js</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/27/css-等高布局/" title="css 等高布局" itemprop="url">css 等高布局</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-27T05:27:20.000Z" itemprop="datePublished"> 发表于 2016-04-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><strong> CSS  等高布局</strong></p>
-<ol>
-<li><p>“隐藏容器溢出”和“正内补丁”和“负外补丁”结合实现div+css自适应高度 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.wrap&#123;overflow:hidden;&#125; <span class="comment">/*外容器*/</span> </span><br><span class="line">.row&#123;padding-bottom:<span class="number">100000</span>px;margin-bottom:-<span class="number">100000</span>px;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>display:table-cell下等高布局实现<br> 利用table的同行单元格等高实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;display:table-row;&#125;</span><br><span class="line">.row&#123;display:table-cell;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>两者可以一起使用达到兼容IE67</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
   </div>
 
 </div>
