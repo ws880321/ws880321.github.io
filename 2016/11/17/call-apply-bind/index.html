@@ -1,123 +1,83 @@
-
- <!DOCTYPE HTML>
-<html >
-<head>
-  <meta charset="UTF-8">
-  
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
     <title>call apply bind | n代农</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="author" content="ws">
+    
+      <link rel="icon" href="/favicon.png">
     
 
-    
-    <meta name="description" content="1、call() 
-bash
-fun.call(thisArg[, arg1[, arg2[, ...]]])thisArg：fun函数运行时指定的this值，可能的值为：
-
-不传，或者传null，undefined， this指向window对象
-传递另一个函数的函数名fun2，this指向函数fun2的引用
-值为原始值(数字，字符串，布尔值),this会指向该原始值的自动包装对象，如 Stri">
-<meta property="og:type" content="article">
-<meta property="og:title" content="call apply bind">
-<meta property="og:url" content="http://wangdashuai.com/2016/11/17/call-apply-bind/index.html">
-<meta property="og:site_name" content="n代农">
-<meta property="og:description" content="1、call() 
-bash
-fun.call(thisArg[, arg1[, arg2[, ...]]])thisArg：fun函数运行时指定的this值，可能的值为：
-
-不传，或者传null，undefined， this指向window对象
-传递另一个函数的函数名fun2，this指向函数fun2的引用
-值为原始值(数字，字符串，布尔值),this会指向该原始值的自动包装对象，如 Stri">
-<meta property="og:updated_time" content="2016-11-17T06:11:55.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="call apply bind">
-<meta name="twitter:description" content="1、call() 
-bash
-fun.call(thisArg[, arg1[, arg2[, ...]]])thisArg：fun函数运行时指定的this值，可能的值为：
-
-不传，或者传null，undefined， this指向window对象
-传递另一个函数的函数名fun2，this指向函数fun2的引用
-值为原始值(数字，字符串，布尔值),this会指向该原始值的自动包装对象，如 Stri">
-
-    
-    <link rel="alternative" href="/atom.xml" title="n代农" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
     <link rel="stylesheet" href="/css/style.css" type="text/css">
-</head>
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css" type="text/css">
+
+  </head>
 
   <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="n代农" title="n代农"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="n代农">n代农</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:wangdashuai.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/11/17/call-apply-bind/" title="call apply bind" itemprop="url">call apply bind</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="ws" target="_blank" itemprop="author">ws</a>
-		
-  <p class="article-time">
-    <time datetime="2016-11-17T05:59:40.000Z" itemprop="datePublished"> 发表于 2016-11-17</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			
-		
+
+<header>
+	<a id="logo" href="/" title="n代农">
+	<img src="/favicon.png" alt="n代农"></a>
+	
+	
+		<!--搜索栏-->
+		<i class="js-toggle-search iconfont icon-search"></i>
+
+
+<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
+	<div class="search-form__inner">
+		<div>
+			<i class="iconfont icon-search"></i>
+			<input class="text-input" placeholder="Enter Key..." type="search">
 		</div>
-		
+	</div>
+</form>
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		<ul id="menu-top" class="menu">
+			
+				
+				<li class="current-menu-item">
+					<a href="http://weibo.com/yumemor/" target="_blank">Weibo</a>
+				</li>
+			
+		</ul>
+	</div>
+</nav>
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      call apply bind
+    </h1>
+  
+
+	<div class='post-body mb'>
 		<p><strong><em> 1、call() </em></strong></p>
 <p><code>bash
 fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时指定的this值，可能的值为：</p>
@@ -128,392 +88,154 @@ fun.call(thisArg[, arg1[, arg2[, ...]]])</code><br>thisArg：fun函数运行时�
 <li>传递一个对象，函数中的this指向这个对象</li>
 </ul>
 <p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">a.call(b);  <span class="comment">// function b()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">a.call(b);  <span class="comment">// function b()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
 <p>经常会看到这种使用情况：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line">list(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);  <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line">list(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);  <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
 <p>为什么能实现这样的功能将arguments转成数组？首先call了之后，this指向了所传进去的arguments。我们可以假设slice方法的内部实现是这样子的：创建一个新数组，然后for循环遍历this，将this[i]一个个地赋值给新数组，最后返回该新数组。因此也就可以理解能实现这样的功能了。</p>
 <p><strong><em>  2、apply() </em></strong></p>
 <p>语法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/ Chrome <span class="number">14</span> 以及 Internet Explorer <span class="number">9</span> 仍然不接受类数组对象。</span><br><span class="line"><span class="comment">// thisArg的可能值和call一样</span></span><br><span class="line">fun.apply(thisArg[, argsArray])</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">/ Chrome <span class="number">14</span> 以及 Internet Explorer <span class="number">9</span> 仍然不接受类数组对象。</span><br><span class="line"><span class="comment">// thisArg的可能值和call一样</span></span><br><span class="line">fun.apply(thisArg[, argsArray])</span><br></pre></td></tr></table></figure>
 <p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, numbers);</span><br><span class="line"><span class="built_in">console</span>.log(max)  <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, numbers);</span><br><span class="line"><span class="built_in">console</span>.log(max)  <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
 <p>平时Math.max只能这样子用：Math.max(5,6,2,3,7);<br>利用apply的第二个参数是数组的特性，从而能够简便地从数组中找到最大值。</p>
 <p><strong><em> 3、bind </em></strong></p>
 <p>语法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">fun.bind(thisArg[, arg1[, arg2[, ...]]]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">	</span><br><span class="line">fun.bind(thisArg[, arg1[, arg2[, ...]]]);</span><br></pre></td></tr></table></figure>
 <p>bind()方法会创建一个新函数，称为绑定函数。</p>
 <p>bind是ES5新增的一个方法，不会执行对应的函数（call或apply会自动执行对应的函数），而是返回对绑定函数的引用。</p>
 <p>当调用这个绑定函数时，thisArg参数作为 this，第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
 <p>简单地说，bind会产生一个新的函数，这个函数可以有预设的参数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> leadingThirtysevenList = list.bind(<span class="literal">undefined</span>, <span class="number">37</span>); <span class="comment">// 绑定函数</span></span><br><span class="line"><span class="keyword">var</span> list = leadingThirtysevenList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 调用绑定函数</span></span><br><span class="line"><span class="built_in">console</span>.log(list); <span class="comment">// [37, 1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将arguments转成数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> leadingThirtysevenList = list.bind(<span class="literal">undefined</span>, <span class="number">37</span>); <span class="comment">// 绑定函数</span></span><br><span class="line"><span class="keyword">var</span> list = leadingThirtysevenList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 调用绑定函数</span></span><br><span class="line"><span class="built_in">console</span>.log(list); <span class="comment">// [37, 1, 2, 3]</span></span><br></pre></td></tr></table></figure>
 <p>把类数组换成真正的数组，bind能够更简单地使用：</p>
 <ul>
 <li>apply用法</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">slice.apply(<span class="built_in">arguments</span>);  <span class="comment">// 类似对象的方法那样调用</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">slice.apply(<span class="built_in">arguments</span>);  <span class="comment">// 类似对象的方法那样调用</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>bind用法</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> unboundSlice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"> <span class="keyword">var</span> slice = <span class="built_in">Function</span>.prototype.apply.bind(unboundSlice);</span><br><span class="line"> <span class="comment">// ...</span></span><br><span class="line">slice(<span class="built_in">arguments</span>);  <span class="comment">// 直接调用，简单</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">var</span> unboundSlice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"> <span class="keyword">var</span> slice = <span class="built_in">Function</span>.prototype.apply.bind(unboundSlice);</span><br><span class="line"> <span class="comment">// ...</span></span><br><span class="line">slice(<span class="built_in">arguments</span>);  <span class="comment">// 直接调用，简单</span></span><br></pre></td></tr></table></figure>
 <p><strong><em> 4、区别 </em></strong></p>
 <p>相同之处：改变函数体内 this 的指向。<br>不同之处：</p>
 <p><em>call、apply的区别：接受参数的方式不一样。
 </em>bind：不立即执行。而apply、call 立即执行。</p>
-  
+
 	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
+	<div class="meta split">
+		
+			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2016-11-17T05:59:40.000Z" itemprop="datePublished">2016-11-17</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	
+<div class="ds-thread" data-thread-key="call-apply-bind" data-title="call apply bind" data-url="http://wangdashuai.com/2016/11/17/call-apply-bind/"></div>
+<script type="text/javascript">
+
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
 
 
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/js/">js</a>
-  </div>
-
 </div>
 
 
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
 
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://wangdashuai.com/2016/11/17/call-apply-bind/" data-title="call apply bind | n代农" data-tsina="null" class="share clearfix">
-	  </div>
-	
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='http://wangdashuai.com/img/author.jpg' alt='ws'>
+					<div class="media__body">
+						<h4>n代农</h4>
+						<p class='site-description'>null</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+				        				<i class="iconfont icon-weibo"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+										<i class="iconfont icon-zhihu"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
 
-
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
 </footer>
 
-   	       
-	</article>
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js" type="text/javascript"></script>-->
+	<script src="/js/lib.js" type="text/javascript"></script>
+	<script src="/js/google-code-prettify/prettify.js" type="text/javascript"></script>
+	<script src="/js/module.js" type="text/javascript"></script>
+	<script src="/js/script.js" type="text/javascript"></script>
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2017/06/30/基于MVVM架构的SEO/" title="基于MVVM架构的SEO">
-  <strong>上一篇：</strong><br/>
-  <span>
-  基于MVVM架构的SEO</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/08/31/搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT/"  title="clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT">
- <strong>下一篇：</strong><br/> 
- <span>clientHeight、offsetHeight、scrollHeight、offsetTop、scrollT
-</span>
-</a>
-</div>
-
-</nav>
-
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- 
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html5/" title="html5">html5<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
-		
-		<a href="/about" target="_blank" title="ws">ws</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
 </html>
