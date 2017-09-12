@@ -10,8 +10,8 @@
       <link rel="icon" href="/favicon.png">
     
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
 
   </head>
 
@@ -65,9 +65,9 @@
   
 
 	<div class='post-body mb'>
-		<p>当你需要写一个if语句的时候，不妨尝试另一种更简便的方法，用JavaScript中的逻辑操作符来代替。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">var day=(new Date).getDay()===<span class="number">0</span>;</span><br><span class="line">//传统<span class="keyword">if</span>语句</span><br><span class="line"><span class="keyword">if</span> (day) &#123;</span><br><span class="line">  alert(<span class="string">'Today is Sunday!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">//运用逻辑与代替<span class="keyword">if</span></span><br><span class="line">day&amp;&amp;alert(<span class="string">'Today is Sunday!'</span>);</span><br></pre></td></tr></table></figure></p>
+		<p>当你需要写一个if语句的时候，不妨尝试另一种更简便的方法，用JavaScript中的逻辑操作符来代替。<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">var day=(new Date).getDay()===0;</div><div class="line">//传统<span class="keyword">if</span>语句</div><div class="line"><span class="keyword">if</span> (day) &#123;</div><div class="line">  alert(<span class="string">'Today is Sunday!'</span>);</div><div class="line">&#125;;</div><div class="line">//运用逻辑与代替<span class="keyword">if</span></div><div class="line">day&amp;&amp;alert(<span class="string">'Today is Sunday!'</span>);</div></pre></td></tr></table></figure></p>
 <p>比如上面的代码，首先得到今天的日期，如果是星期天，则弹窗，否则什么也不做。我们知道逻辑操作存在短路的情况，对于逻辑与表达式，只有两者都真才结果才为真，如果前面的day变量被判断为假了，那么对于整个与表达式来说结果就是假，所以就不会继续去执行后面的alert了，如果前面day为真，则还要继续执行后面的代码来确定整个表达式的真假。利用这点达到了if的效果。</p>
-<p>对于传统的if语句，如果执行体代码超过了1 条语句，则需要加花括号，而利用逗号表达式，可以执行任意条代码而不用加花括号。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">if</span>(conditoin) alert(<span class="number">1</span>),alert(<span class="number">2</span>),console.log(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<p>对于传统的if语句，如果执行体代码超过了1 条语句，则需要加花括号，而利用逗号表达式，可以执行任意条代码而不用加花括号。<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">1 <span class="keyword">if</span>(conditoin) alert(1),alert(2),console.log(3);</div></pre></td></tr></table></figure></p>
 
 	</div>
 	<div class="meta split">
@@ -151,11 +151,11 @@ var duoshuoQuery = {short_name:"yumemor"};
 </footer>
 
 	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js" type="text/javascript"></script>-->
-	<script src="/js/lib.js" type="text/javascript"></script>
-	<script src="/js/google-code-prettify/prettify.js" type="text/javascript"></script>
-	<script src="/js/module.js" type="text/javascript"></script>
-	<script src="/js/script.js" type="text/javascript"></script>
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
 	
 		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	

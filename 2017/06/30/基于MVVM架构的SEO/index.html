@@ -10,8 +10,8 @@
       <link rel="icon" href="/favicon.png">
     
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
 
   </head>
 
@@ -75,7 +75,7 @@
 <p>prerender.io 提供了在线缓存快照的服务，不过目前需要翻墙而且服务也是收费的。如果想在后端搭一个自己的prerender服务也是可以的， prerender 完全开源。</p>
 <p>实践中我的项目是nginx + avalon + java的，因此搭好自己的prerender服务后，配置下nginx就ok啦。</p>
 <p>下面是在项目中的nginx配置：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">location / &#123;&#10;    try_files $uri @prerender;&#10;       #&#36825;&#37324;&#26159;&#20010;&#22353;&#65292;root&#21644;index&#22343;&#19981;&#38656;&#35201;&#37197;&#32622;&#10;       #root   /mnt3/zhangx/static/avant_v2-dev/;&#10;       #index  index.html index.htm;&#10;    &#125;&#10;&#10;   location @prerender &#123;&#10;       # &#22914;&#26524;&#20351;&#29992;&#31532;&#19977;&#26041;prerender.io&#30340;&#26381;&#21153;&#65292; &#21017;&#38656;&#35201;&#37197;&#32622;token&#10;       #proxy_set_header X-Prerender-Token o3FCu6FeMLDWG9jcQPBl;&#10;       set $prerender 0;&#10;       if ($http_user_agent ~* &#34;baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator&#34;) &#123;&#10;           set $prerender 1;&#10;       &#125;&#10;       if ($args ~ &#34;_escaped_fragment_&#34;) &#123;&#10;           set $prerender 1;&#10;       &#125;&#10;       if ($http_user_agent ~ &#34;Prerender&#34;) &#123;&#10;           set $prerender 0;&#10;       &#125;&#10;       if ($uri ~ &#34;\.(js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)&#34;) &#123;&#10;           set $prerender 0;&#10;       &#125;&#10;&#10;       #resolve using Google&#39;s DNS server to force DNS resolution and prevent caching of IPs&#10;       resolver 8.8.8.8;&#10;&#10;       if ($prerender = 1) &#123;&#10;           #set $prerender &#34;service.prerender.io&#34;;&#10;           # &#36825;&#37324;&#26367;&#25442;&#25104;&#33258;&#24049;&#30340;&#26381;&#21153;&#10;           set $prerender &#34;test.meprint.com:3000&#34;;&#10;           rewrite .* /$scheme://$host$request_uri? break;&#10;           proxy_pass http://$prerender;&#10;       &#125;&#10;       if ($prerender = 0) &#123;&#10;           root   /mnt3/zhangx/static/avant_v2-dev/;&#10;           #rewrite .*/index.html break;&#10;       &#125;&#10;   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    try_files $uri @prerender;</div><div class="line">       #这里是个坑，root和index均不需要配置</div><div class="line">       #root   /mnt3/zhangx/static/avant_v2-dev/;</div><div class="line">       #index  index.html index.htm;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">   location @prerender &#123;</div><div class="line">       # 如果使用第三方prerender.io的服务， 则需要配置token</div><div class="line">       #proxy_set_header X-Prerender-Token o3FCu6FeMLDWG9jcQPBl;</div><div class="line">       set $prerender 0;</div><div class="line">       if ($http_user_agent ~* &quot;baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator&quot;) &#123;</div><div class="line">           set $prerender 1;</div><div class="line">       &#125;</div><div class="line">       if ($args ~ &quot;_escaped_fragment_&quot;) &#123;</div><div class="line">           set $prerender 1;</div><div class="line">       &#125;</div><div class="line">       if ($http_user_agent ~ &quot;Prerender&quot;) &#123;</div><div class="line">           set $prerender 0;</div><div class="line">       &#125;</div><div class="line">       if ($uri ~ &quot;\.(js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)&quot;) &#123;</div><div class="line">           set $prerender 0;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       #resolve using Google&apos;s DNS server to force DNS resolution and prevent caching of IPs</div><div class="line">       resolver 8.8.8.8;</div><div class="line"></div><div class="line">       if ($prerender = 1) &#123;</div><div class="line">           #set $prerender &quot;service.prerender.io&quot;;</div><div class="line">           # 这里替换成自己的服务</div><div class="line">           set $prerender &quot;test.meprint.com:3000&quot;;</div><div class="line">           rewrite .* /$scheme://$host$request_uri? break;</div><div class="line">           proxy_pass http://$prerender;</div><div class="line">       &#125;</div><div class="line">       if ($prerender = 0) &#123;</div><div class="line">           root   /mnt3/zhangx/static/avant_v2-dev/;</div><div class="line">           #rewrite .*/index.html break;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 	</div>
 	<div class="meta split">
 		
@@ -158,11 +158,11 @@ var duoshuoQuery = {short_name:"yumemor"};
 </footer>
 
 	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js" type="text/javascript"></script>-->
-	<script src="/js/lib.js" type="text/javascript"></script>
-	<script src="/js/google-code-prettify/prettify.js" type="text/javascript"></script>
-	<script src="/js/module.js" type="text/javascript"></script>
-	<script src="/js/script.js" type="text/javascript"></script>
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
 	
 		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	
